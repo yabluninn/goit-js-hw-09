@@ -39,10 +39,17 @@ form.addEventListener('input', event => {
 form.addEventListener('submit', event => {
   event.preventDefault();
 
-  console.log('Form Data:', formData);
+  const email = form.elements.email.value.trim();
+  const message = form.elements.message.value.trim();
 
-  form.reset();
-  localStorage.removeItem(storageKey);
-  formData.email = '';
-  formData.message = '';
+  if (email && message) {
+    console.log('Form Data:', { email, message });
+
+    form.reset();
+    localStorage.removeItem(storageKey);
+    formData.email = '';
+    formData.message = '';
+  } else {
+    window.alert('Please fill in all fields!');
+  }
 });
